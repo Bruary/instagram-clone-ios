@@ -7,18 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D0DFD0B280C4A40003E63F7 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DFD0A280C4A40003E63F7 /* CreatePostView.swift */; };
+		4D0DFD0D280C4CDE003E63F7 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0DFD0C280C4CDE003E63F7 /* PostView.swift */; };
 		4DFB23F5280C3DE200F4BC08 /* instagram_clone_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB23F4280C3DE200F4BC08 /* instagram_clone_iosApp.swift */; };
 		4DFB23F7280C3DE200F4BC08 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB23F6280C3DE200F4BC08 /* ContentView.swift */; };
 		4DFB23F9280C3DE300F4BC08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DFB23F8280C3DE300F4BC08 /* Assets.xcassets */; };
 		4DFB23FC280C3DE300F4BC08 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DFB23FB280C3DE300F4BC08 /* Preview Assets.xcassets */; };
+		4DFB2406280C453C00F4BC08 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB2405280C453C00F4BC08 /* MainView.swift */; };
+		4DFB2408280C455300F4BC08 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB2407280C455300F4BC08 /* ProfileView.swift */; };
+		4DFB240B280C491300F4BC08 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFB240A280C491300F4BC08 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D0DFD0A280C4A40003E63F7 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
+		4D0DFD0C280C4CDE003E63F7 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		4DFB23F1280C3DE200F4BC08 /* instagram-clone-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "instagram-clone-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFB23F4280C3DE200F4BC08 /* instagram_clone_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instagram_clone_iosApp.swift; sourceTree = "<group>"; };
 		4DFB23F6280C3DE200F4BC08 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4DFB23F8280C3DE300F4BC08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DFB23FB280C3DE300F4BC08 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4DFB2405280C453C00F4BC08 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4DFB2407280C455300F4BC08 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		4DFB240A280C491300F4BC08 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +45,9 @@
 		4DFB23E8280C3DE200F4BC08 = {
 			isa = PBXGroup;
 			children = (
+				4DFB2404280C3E1200F4BC08 /* Views */,
+				4DFB2403280C3E0900F4BC08 /* ViewModels */,
+				4DFB2402280C3DFD00F4BC08 /* Models */,
 				4DFB23F3280C3DE200F4BC08 /* instagram-clone-ios */,
 				4DFB23F2280C3DE200F4BC08 /* Products */,
 			);
@@ -65,6 +78,32 @@
 				4DFB23FB280C3DE300F4BC08 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4DFB2402280C3DFD00F4BC08 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4DFB2403280C3E0900F4BC08 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4DFB2404280C3E1200F4BC08 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4DFB2405280C453C00F4BC08 /* MainView.swift */,
+				4DFB2407280C455300F4BC08 /* ProfileView.swift */,
+				4DFB240A280C491300F4BC08 /* HomeView.swift */,
+				4D0DFD0A280C4A40003E63F7 /* CreatePostView.swift */,
+				4D0DFD0C280C4CDE003E63F7 /* PostView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +176,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0DFD0D280C4CDE003E63F7 /* PostView.swift in Sources */,
+				4DFB2408280C455300F4BC08 /* ProfileView.swift in Sources */,
 				4DFB23F7280C3DE200F4BC08 /* ContentView.swift in Sources */,
+				4DFB2406280C453C00F4BC08 /* MainView.swift in Sources */,
+				4D0DFD0B280C4A40003E63F7 /* CreatePostView.swift in Sources */,
+				4DFB240B280C491300F4BC08 /* HomeView.swift in Sources */,
 				4DFB23F5280C3DE200F4BC08 /* instagram_clone_iosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
