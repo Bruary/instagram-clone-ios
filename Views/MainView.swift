@@ -12,6 +12,7 @@ struct MainView: View {
     @State var selectedView: Int = 0
     
     var body: some View {
+        
         TabView (selection: $selectedView){
             
             HomeView()
@@ -20,6 +21,7 @@ struct MainView: View {
                     Text("Home")
                 }
                 .tag(0)
+            
             
             CreatePostView()
                 .tabItem {

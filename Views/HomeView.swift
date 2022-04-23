@@ -9,7 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text("Home Page")
+        ScrollView(.vertical, showsIndicators: false) {
+            Text("Home Page")
+        }
     }
 }
 

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PostView: View {
+    
+    //var Post: Post
+    
     var body: some View {
         VStack ( spacing: .zero) {
             
