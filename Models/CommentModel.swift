@@ -12,6 +12,6 @@ struct Comment {
     var CommentString: String
     var LikesCount: Int
     var ParentID: Int
-    var PostID
+    var PostID: Int
     var CreatedAt: String
 }

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct PostView: View {
     
-    //var Post: Post
+    @State var isExpanded: Bool = false
+    var caption: String = "Fatou, the oldest and youngest ahahahafesfsefsfsefe fsefgsfseg srgdtrs wrgedtrfserdg"
+    @State var captionLineLimit: Int = 1
     
     var body: some View {
         VStack ( spacing: .zero) {
@@ -64,9 +66,51 @@ struct PostView: View {
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Fatou, the oldest known gorilla just turned 65 at the Berlin Zoo. The female ape was given a special birthday cake to celebrate.")
-                    .font(.caption)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                if !isExpanded && caption != "" {
+                    
+                    Text(caption)
+                        .font(.caption)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .onTapGesture {
+                            isExpanded = true
+                        }
+                        .lineLimit(captionLineLimit)
+                    
+                    // If caption is longer than 70 chars then consider it as more than one line
+                    // And add show more and show less
+                    if caption.count > 70 {
+                        
+                    Text("Show more")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .onTapGesture {
+                            isExpanded = true
+                        }
+                    }
+                        
+                    
+                } else if isExpanded && caption != "" {
+                    Text(caption)
+                        .font(.caption)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .onTapGesture {
+                            isExpanded = false
+                        }
+                    
+                    // If caption is longer than 70 chars then consider it as more than one line
+                    // And add show more and show less
+                    if caption.count > 70 {
+                    Text("Show less")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .onTapGesture {
+                            isExpanded = false
+                        }
+                    }
+                    
+                }
                 
                 Text("View comments")
                     .font(.footnote)
