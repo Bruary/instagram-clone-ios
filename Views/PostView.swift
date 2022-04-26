@@ -10,7 +10,8 @@ import SwiftUI
 struct PostView: View {
     
     @State var isExpanded: Bool = false
-    var caption: String = "Fatou, the oldest and youngest ahahahafesfsefsfsefe fsefgsfseg srgdtrs wrgedtrfserdg"
+    var user: User
+    var post: Post
     @State var captionLineLimit: Int = 1
     
     var body: some View {
@@ -18,9 +19,14 @@ struct PostView: View {
             
             // MARK: Header
             HStack {
-                Image(systemName: "photo.circle")
                 
-                Text("AcountName")
+                Image(user.ProfileImageUrl)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 30, height: 30)
+                    .clipShape(Circle())
+                
+                Text(user.Name)
                     .font(.system(size: 14))
                     .font(.headline)
                 
@@ -33,9 +39,11 @@ struct PostView: View {
             .frame(width: UIScreen.main.bounds.width, height: 40)
             
             // MARK: Body
-            Image("")
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width) // set aspect ratio to 1:1
-                .background(Color.red)
+            Image(post.PostURL)
+                .resizable()
+                .scaledToFill()
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+                .clipped()
             
             // MARK: Footer
             HStack {
@@ -61,14 +69,14 @@ struct PostView: View {
             
             VStack (alignment: .trailing) {
                 
-                Text("13,270 likes")
+                Text(String(post.LikesCount) + " likes")
                     .font(.caption)
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                if !isExpanded && caption != "" {
+                if !isExpanded && post.Caption != "" {
                     
-                    Text(caption)
+                    Text(post.Caption)
                         .font(.caption)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
@@ -78,7 +86,7 @@ struct PostView: View {
                     
                     // If caption is longer than 70 chars then consider it as more than one line
                     // And add show more and show less
-                    if caption.count > 70 {
+                    if post.Caption.count > 70 {
                         
                     Text("Show more")
                         .font(.caption)
@@ -90,8 +98,8 @@ struct PostView: View {
                     }
                         
                     
-                } else if isExpanded && caption != "" {
-                    Text(caption)
+                } else if isExpanded && post.Caption != "" {
+                    Text(post.Caption)
                         .font(.caption)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
@@ -100,7 +108,7 @@ struct PostView: View {
                     
                     // If caption is longer than 70 chars then consider it as more than one line
                     // And add show more and show less
-                    if caption.count > 70 {
+                    if post.Caption.count > 70 {
                     Text("Show less")
                         .font(.caption)
                         .fontWeight(.bold)
@@ -128,7 +136,7 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView()
+        PostView(user: firstUser, post: posts[0])
             .previewLayout(.fixed(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width + 140))
     }
 }
