@@ -10,7 +10,11 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            Text("Home Page")
+            VStack{
+                ForEach(posts) { post in
+                    PostView(user: firstUser, post: post)
+                }
+            }
         }
     }
 }
