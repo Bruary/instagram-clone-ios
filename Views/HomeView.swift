@@ -9,12 +9,22 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
+        VStack{
+            Text("Instagram")
+                .font(.system(size: 20))
+                .font(.headline)
+                .fontWeight(.black)
+                .padding(5)
+                
+            
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
                 ForEach(posts) { post in
                     PostView(user: firstUser, post: post)
                 }
             }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }

@@ -70,14 +70,16 @@ struct PostView: View {
             VStack (alignment: .trailing) {
                 
                 Text(String(post.LikesCount) + " likes")
-                    .font(.caption)
+                    .font(.system(size: 14))
+                    //.font(.caption)
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 if !isExpanded && post.Caption != "" {
                     
                     Text(post.Caption)
-                        .font(.caption)
+                        //.font(.caption)
+                        .font(.system(size: 14))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
                             isExpanded = true
@@ -100,7 +102,8 @@ struct PostView: View {
                     
                 } else if isExpanded && post.Caption != "" {
                     Text(post.Caption)
-                        .font(.caption)
+                        //.font(.caption)
+                        .font(.system(size: 14))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
                             isExpanded = false
@@ -121,7 +124,8 @@ struct PostView: View {
                 }
                 
                 Text("View comments")
-                    .font(.footnote)
+                    //.font(.footnote)
+                    .font(.system(size: 12))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 
