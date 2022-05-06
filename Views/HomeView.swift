@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     var body: some View {
         VStack{
             Text("Instagram")
@@ -15,16 +16,19 @@ struct HomeView: View {
                 .font(.headline)
                 .fontWeight(.black)
                 .padding(5)
-                
             
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack{
-                ForEach(posts) { post in
+            
+            List {
+                    
+                ForEach(posts, id: \.id) { post in
                     PostView(user: firstUser, post: post)
                 }
+                
             }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.leading , -20) // to remove the extra space on the left
+            .listStyle(.plain)
+            
+            
         }
     }
 }
