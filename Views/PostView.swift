@@ -41,8 +41,8 @@ struct PostView: View {
             // MARK: Body
             Image(post.PostURL)
                 .resizable()
-                .scaledToFill()
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+                .scaledToFit()
                 .clipped()
             
             // MARK: Footer
@@ -75,50 +75,83 @@ struct PostView: View {
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                if !isExpanded && post.Caption != "" {
+                if !self.isExpanded && post.Caption != "" {
                     
                     Text(post.Caption)
                         //.font(.caption)
                         .font(.system(size: 14))
+                        .lineLimit(captionLineLimit)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
-                            isExpanded = true
+                            print("Did this work 11??")
+                            self.isExpanded.toggle()
                         }
-                        .lineLimit(captionLineLimit)
                     
                     // If caption is longer than 70 chars then consider it as more than one line
                     // And add show more and show less
                     if post.Caption.count > 70 {
                         
-                    Text("Show more")
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .onTapGesture {
-                            isExpanded = true
-                        }
+                        Button {
+                            self.isExpanded.toggle()
+                        } label: {
+                            Text("Show more")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .onTapGesture {
+                                    print("Did this work 2222??")
+                                    self.isExpanded.toggle()
+                                }
+                            }
+                        //}
+
+//                    Text("Show more")
+//                        .font(.caption)
+//                        .fontWeight(.bold)
+//                        .frame(maxWidth: .infinity, alignment: .leading)
+//                        .onTapGesture {
+//                            print("Did this work 2222??")
+//                            self.isExpanded.toggle()
+//                        }
                     }
                         
                     
-                } else if isExpanded && post.Caption != "" {
+                } else if self.isExpanded && post.Caption != "" {
+                    
                     Text(post.Caption)
                         //.font(.caption)
                         .font(.system(size: 14))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
-                            isExpanded = false
+                            print("Did this work 3333??")
+                            self.isExpanded.toggle()
                         }
                     
                     // If caption is longer than 70 chars then consider it as more than one line
                     // And add show more and show less
                     if post.Caption.count > 70 {
-                    Text("Show less")
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .onTapGesture {
-                            isExpanded = false
-                        }
+                        
+                        Button {
+                            self.isExpanded.toggle()
+                        } label: {
+                            Text("Show more")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .onTapGesture {
+                                    print("Did this work 2222??")
+                                    self.isExpanded.toggle()
+                                }
+                            }
+                        
+//                    Text("Show less")
+//                        .font(.caption)
+//                        .fontWeight(.bold)
+//                        .frame(maxWidth: .infinity, alignment: .leading)
+//                        .onTapGesture {
+//                            print("Did this work 444??")
+//                            self.isExpanded.toggle()
+//                        }
                     }
                     
                 }
@@ -133,7 +166,7 @@ struct PostView: View {
             .frame(maxWidth: .infinity)
             .padding(.horizontal,10)
             
-            Spacer()
+            //Spacer()
         }
     }
 }
