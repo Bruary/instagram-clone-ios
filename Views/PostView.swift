@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import AudioToolbox
 
 struct PostView: View {
     
     @State var isExpanded: Bool = false
+    @State var isLiked: Bool = false
     var user: User
     var post: Post
     @State var captionLineLimit: Int = 1
@@ -47,10 +49,21 @@ struct PostView: View {
             
             // MARK: Footer
             HStack {
-                Image(systemName: "heart")
+                
+                Image(systemName: isLiked ? "heart.fill" : "heart")
                     .resizable()
                     .frame(width: 20, height: 20)
+                    .foregroundColor(isLiked ? Color.red : nil)
                     .padding(.horizontal, 5)
+                    .onTapGesture {
+                        withAnimation(Animation.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 1.0)) {
+                            isLiked.toggle()
+                        }
+                        
+                        // to vibrate when the like button is pressed
+                        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {   }
+                       
+                    }
                 
                 Image(systemName: "message")
                     .resizable()
