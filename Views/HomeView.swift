@@ -19,15 +19,13 @@ struct HomeView: View {
                 .padding(5)
             
             
-            List {
+            ScrollView (.vertical, showsIndicators: false){
                     
-                ForEach(posts, id: \.id) { post in
+                ForEach(posts) { post in
                     PostView(user: firstUser, post: post)
                 }
                 
             }
-            .padding(.leading , -20) // to remove the extra space on the left
-            .listStyle(.plain)
             
             
         }
