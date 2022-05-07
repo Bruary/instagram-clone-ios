@@ -56,7 +56,7 @@ struct PostView: View {
                     .foregroundColor(isLiked ? Color.red : nil)
                     .padding(.horizontal, 5)
                     .onTapGesture {
-                        withAnimation(Animation.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 1.0)) {
+                        withAnimation(Animation.spring(response: 0.3, dampingFraction: 0.8, blendDuration: 1.0)) { // dampingFraction is the bounce of the sring (lower value for higher bounce)
                             isLiked.toggle()
                         }
                         
@@ -74,10 +74,12 @@ struct PostView: View {
                 
                 Image(systemName: "bookmark")
                     .resizable()
-                    .frame(width: 20, height: 20)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 20)
                     .padding(.horizontal, 5)
                 
             }
+            .frame(height: 25)
             .padding(10)
             
             VStack (alignment: .trailing) {
