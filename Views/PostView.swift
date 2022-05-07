@@ -52,7 +52,8 @@ struct PostView: View {
                 
                 Image(systemName: isLiked ? "heart.fill" : "heart")
                     .resizable()
-                    .frame(width: 20, height: 20)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 20)
                     .foregroundColor(isLiked ? Color.red : nil)
                     .padding(.horizontal, 5)
                     .onTapGesture {
@@ -60,14 +61,15 @@ struct PostView: View {
                             isLiked.toggle()
                         }
                         
-                        // to vibrate when the like button is pressed
-                        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {   }
+                        // to trigger a haptic feedback when the like button is pressed
+                        UINotificationFeedbackGenerator().notificationOccurred(.success)
                        
                     }
                 
                 Image(systemName: "message")
                     .resizable()
-                    .frame(width: 20, height: 20)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 20)
                     .padding(.horizontal, 5)
                 
                 Spacer()
@@ -86,14 +88,12 @@ struct PostView: View {
                 
                 Text(String(post.LikesCount) + " likes")
                     .font(.system(size: 14))
-                    //.font(.caption)
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 if !self.isExpanded && post.Caption != "" {
                     
                     Text(post.Caption)
-                        //.font(.caption)
                         .font(.system(size: 14))
                         .lineLimit(captionLineLimit)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -118,16 +118,7 @@ struct PostView: View {
                                     self.isExpanded.toggle()
                                 }
                             }
-                        //}
-
-//                    Text("Show more")
-//                        .font(.caption)
-//                        .fontWeight(.bold)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .onTapGesture {
-//                            print("Did this work 2222??")
-//                            self.isExpanded.toggle()
-//                        }
+                        
                     }
                         
                     
@@ -159,20 +150,11 @@ struct PostView: View {
                                 }
                             }
                         
-//                    Text("Show less")
-//                        .font(.caption)
-//                        .fontWeight(.bold)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .onTapGesture {
-//                            print("Did this work 444??")
-//                            self.isExpanded.toggle()
-//                        }
                     }
                     
                 }
                 
                 Text("View comments")
-                    //.font(.footnote)
                     .font(.system(size: 12))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -181,7 +163,6 @@ struct PostView: View {
             .frame(maxWidth: .infinity)
             .padding(.horizontal,10)
             
-            //Spacer()
         }
     }
 }
