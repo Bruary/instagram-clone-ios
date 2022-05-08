@@ -12,11 +12,14 @@ struct PostView: View {
     
     @State var isExpanded: Bool = false
     @State var isLiked: Bool = false
+    @State var isBookmarked: Bool = false
     var user: User
     var post: Post
     @State var captionLineLimit: Int = 1
     
     var body: some View {
+        
+        
         VStack ( spacing: .zero) {
             
             // MARK: Header
@@ -35,7 +38,7 @@ struct PostView: View {
                 Spacer()
                 
                 Image(systemName: "slider.horizontal.3")
-                    
+                
             }
             .padding(10)
             .frame(width: UIScreen.main.bounds.width, height: 40)
@@ -63,22 +66,34 @@ struct PostView: View {
                         
                         // to trigger a haptic feedback when the like button is pressed
                         UINotificationFeedbackGenerator().notificationOccurred(.success)
-                       
+                        
                     }
                 
-                Image(systemName: "message")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 20)
-                    .padding(.horizontal, 5)
+                NavigationLink {
+                    CommentsView()
+                } label: {
+                    Image(systemName: "message")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 20)
+                        .padding(.horizontal, 5)
+                }
                 
                 Spacer()
                 
-                Image(systemName: "bookmark")
+                Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 20)
                     .padding(.horizontal, 5)
+                    .onTapGesture {
+                        withAnimation(Animation.spring(response: 0.8, dampingFraction: 0.8, blendDuration: 1.0)) {
+                            isBookmarked.toggle()
+                        }
+                        
+                        // to trigger a haptic feedback when the bookmark button is pressed
+                        UINotificationFeedbackGenerator().notificationOccurred(.success)
+                    }
                 
             }
             .frame(height: 25)
@@ -98,7 +113,6 @@ struct PostView: View {
                         .lineLimit(captionLineLimit)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
-                            print("Did this work 11??")
                             self.isExpanded.toggle()
                         }
                     
@@ -114,22 +128,20 @@ struct PostView: View {
                                 .fontWeight(.bold)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .onTapGesture {
-                                    print("Did this work 2222??")
                                     self.isExpanded.toggle()
                                 }
-                            }
+                        }
                         
                     }
-                        
+                    
                     
                 } else if self.isExpanded && post.Caption != "" {
                     
                     Text(post.Caption)
-                        //.font(.caption)
+                    //.font(.caption)
                         .font(.system(size: 14))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
-                            print("Did this work 3333??")
                             self.isExpanded.toggle()
                         }
                     
@@ -140,15 +152,14 @@ struct PostView: View {
                         Button {
                             self.isExpanded.toggle()
                         } label: {
-                            Text("Show more")
+                            Text("Show less")
                                 .font(.caption)
                                 .fontWeight(.bold)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .onTapGesture {
-                                    print("Did this work 2222??")
                                     self.isExpanded.toggle()
                                 }
-                            }
+                        }
                         
                     }
                     
@@ -164,12 +175,13 @@ struct PostView: View {
             .padding(.horizontal,10)
             
         }
+        
     }
 }
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
         PostView(user: firstUser, post: posts[0])
-            .previewLayout(.fixed(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width + 140))
+            .previewLayout(.sizeThatFits)
     }
 }
