@@ -11,23 +11,19 @@ import SwiftUI
 struct HomeView: View {
     
     var body: some View {
-        VStack{
-            Text("Instagram")
-                .font(.system(size: 20))
-                .font(.headline)
-                .fontWeight(.black)
-                .padding(5)
+        
+        NavigationView {
             
-            
-            ScrollView (.vertical, showsIndicators: false){
+                ScrollView (.vertical, showsIndicators: false) {
                     
-                ForEach(posts) { post in
-                    PostView(user: firstUser, post: post)
+                    ForEach(posts) { post in
+                        PostView(user: firstUser, post: post)
+                    }
+                    
                 }
+                .navigationTitle("Instagram")
+                .navigationBarTitleDisplayMode(.automatic)
                 
-            }
-            
-            
         }
     }
 }
