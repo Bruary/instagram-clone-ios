@@ -10,12 +10,24 @@ import SwiftUI
 struct CommentsView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @State var post: Post
+    @State var user: User
     
     var body: some View {
         
-        VStack{
+        VStack {
             
-            Text("Comments show here lol")
+            HStack {
+                Image(user.ProfileImageUrl)
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                Text("Comments show here lol")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(10)
+            
+            Spacer()
             
         }
         .toolbar {
@@ -41,6 +53,6 @@ struct CommentsView: View {
 
 struct CommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentsView()
+        CommentsView(post: posts[0], user: users[0])
     }
 }

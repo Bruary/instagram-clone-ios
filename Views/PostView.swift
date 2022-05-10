@@ -15,6 +15,7 @@ struct PostView: View {
     @State var isBookmarked: Bool = false
     var user: User
     var post: Post
+    //var adjustedCaption: String = "abc"
     @State var captionLineLimit: Int = 1
     
     var body: some View {
@@ -70,7 +71,7 @@ struct PostView: View {
                     }
                 
                 NavigationLink {
-                    CommentsView()
+                    CommentsView(post: post, user: user)
                 } label: {
                     Image(systemName: "message")
                         .resizable()
@@ -108,13 +109,39 @@ struct PostView: View {
                 
                 if !self.isExpanded && post.Caption != "" {
                     
-                    Text(post.Caption)
-                        .font(.system(size: 14))
-                        .lineLimit(captionLineLimit)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .onTapGesture {
-                            self.isExpanded.toggle()
-                        }
+//                    Group {
+//                        Text(user.Name).bold() + Text(post.Caption)
+//                    }
+                    
+                    HStack (spacing: 5) {
+                    
+                        Text(user.Name).bold() + Text(post.Caption)
+                           
+                    }
+                    .font(.system(size: 14))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .lineLimit(captionLineLimit)
+                    .onTapGesture {
+                        self.isExpanded.toggle()
+                    }
+                    
+//                    HStack (spacing: 5) {
+//                        Text(user.Name)
+//                            .font(.system(size: 14))
+//                            .bold()
+//                            .padding(0)
+//                        +
+//
+//                        Text(post.Caption)
+//                            .font(.system(size: 14))
+//                            .lineLimit(captionLineLimit)
+//                            .frame(maxWidth: .infinity, alignment: .leading)
+//                            .onTapGesture {
+//                                self.isExpanded.toggle()
+//                            }
+//
+//                    }
+                    
                     
                     // If caption is longer than 70 chars then consider it as more than one line
                     // And add show more and show less
@@ -137,13 +164,18 @@ struct PostView: View {
                     
                 } else if self.isExpanded && post.Caption != "" {
                     
-                    Text(post.Caption)
-                    //.font(.caption)
-                        .font(.system(size: 14))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .onTapGesture {
-                            self.isExpanded.toggle()
-                        }
+                    HStack (spacing: 5) {
+                        Text(user.Name)
+                            .font(.system(size: 14))
+                            .bold()
+                        
+                        Text(post.Caption)
+                            .font(.system(size: 14))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .onTapGesture {
+                                self.isExpanded.toggle()
+                            }
+                    }
                     
                     // If caption is longer than 70 chars then consider it as more than one line
                     // And add show more and show less
