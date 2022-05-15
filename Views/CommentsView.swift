@@ -17,16 +17,40 @@ struct CommentsView: View {
         
         VStack {
             
+            ScrollView{
+            
             HStack {
                 Image(user.ProfileImageUrl)
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
-                Text("Comments show here lol")
+                Text(user.Name + "  " + post.Caption)
+                    .font(.system(size: 14))
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(10)
             
+            Divider()
+            
+                
+            ForEach(comments) { comment in
+                HStack {
+                    Image(user.ProfileImageUrl)
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                    Text(user.Name + "  " + comment.CommentString)
+                        .font(.system(size: 14))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(10)
+                
+                
+            }
+            
+            }
             Spacer()
             
         }
